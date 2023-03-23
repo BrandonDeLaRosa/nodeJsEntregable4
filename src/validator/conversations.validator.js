@@ -1,4 +1,4 @@
-const { check, param } = require('express-validator');
+const { check } = require('express-validator');
 const validateResult = require('../utils/validate');
 
 const createConversationValidator = [
