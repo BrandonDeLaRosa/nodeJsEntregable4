@@ -1,13 +1,16 @@
 const Conversations = require('../models/conversations.model');
 const Users = require('../models/users.model');
 const Messages = require('../models/messages.model');
+const Participants = require('../models/participants.model');
 
 
 class conversationServices {
 
-    static async createConver(newConversation){
+    static async createConver( participant,newConversation){
        try {
         const conver = await Conversations.create(newConversation)
+        await Participants.create({conversationId: conver.id, userId: conver.userId})
+        await Participants.create({userId: participant, conversationId: conver.id })
         return conver
        } catch (error) {
         throw(error)

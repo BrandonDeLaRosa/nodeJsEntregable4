@@ -15,8 +15,9 @@ const getConver = async (req,res,next) => {
 
 const createConversation = async (req,res,next) => {
     try {
-        const newConversation = req.body;
-        const conver = await conversationServices.createConver(newConversation);
+    
+        const {participantId, ...newConversation} = req.body;
+        const conver = await conversationServices.createConver(participantId ,newConversation);
         res.status(201).json(conver);
     } catch (error) {
        next({
